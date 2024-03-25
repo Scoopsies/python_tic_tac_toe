@@ -15,20 +15,25 @@ def new_game():
         
         while win == False and turn < 9:
             print_board(board)
+            player_choice = input('Where do you want to play? (1 - 9)\n \n')
 
             while True:
-                player_choice = input('Where do you want to play? \n \n')
                 try:
                     choice_index = int(player_choice) - 1
                     y_axis = int((choice_index)/ 3)
                     x_axis = choice_index % 3
-                    if 0 <= choice_index <= 8 and board[y_axis][x_axis] != 'X':
-                        break
-                    else:
+
+                    if not (0 <= choice_index <= 8):
+                        raise IndexError()
+                    if board[y_axis][x_axis] == 'X' or board[y_axis][x_axis] == 'O':
                         raise ValueError()
+                    break
                 except ValueError:
                     print_board(board)
-                    print(f'{player_choice} is not a valid input. Please choose a number between 1 and 9.')
+                    player_choice = input(f'{player_choice} has already been chosen. Please select an unchosen spot. (1 - 9) \n \n')
+                except IndexError:
+                    player_choice = input(f'{player_choice} is not in range 1-9. Please select an unchosen spot. (1-9)')
+
 
             y_axis = int((choice_index)/ 3)
             x_axis = choice_index % 3
