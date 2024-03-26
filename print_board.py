@@ -1,5 +1,6 @@
-def print_board(board):
+def print_board(board) -> None:
     board_size = len(board)
+    print('')
     for i in range(board_size):
         down = ''
         for x in range(board_size - 1):
@@ -15,8 +16,10 @@ def print_board(board):
         for value in selection_values:
             if len(str(value)) == 1:
                 selection_format += '  {}  |'
-            else:
+            elif len(str(value)) == 2:
                 selection_format += ' {}  |'
+            else:
+                selection_format += ' {} |'
         selection_format = selection_format[:-1]
         selection = selection_format.format(*selection_values)
         print(down)

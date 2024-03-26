@@ -1,17 +1,18 @@
-def win_checker(board):
-    for i in range(len(board)):
+def win_checker(board) -> bool:
+    board_length = len(board)
+    for i in range(board_length):
         row = []
         column = []
         diagonal_forward = []
         diagonal_backward = []
-        backward_count = len(board) - 1
+        backward_count = board_length - 1
         win_x = []
-        for x in range(len(board)):
+        for x in range(board_length):
             win_x.append('X')
         win_o = []
-        for x in range(len(board)):
+        for x in range(board_length):
             win_o.append('O')
-        for x in range(len(board)):
+        for x in range(board_length):
             row.append(board[i][x])
             column.append(board[x][i])
             diagonal_forward.append(board[x][x])
