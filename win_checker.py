@@ -1,4 +1,8 @@
-def win_checker(board) -> bool:
+def win_checker(board, turn) -> bool:
+    if (turn % 2):
+        x_or_o = 'O'
+    else: 
+        x_or_o = 'X'
     board_length = len(board)
     for i in range(board_length):
         row = []
@@ -6,12 +10,12 @@ def win_checker(board) -> bool:
         diagonal_forward = []
         diagonal_backward = []
         backward_count = board_length - 1
-        win_x = []
+        win_conditions = []
         for x in range(board_length):
-            win_x.append('X')
-        win_o = []
-        for x in range(board_length):
-            win_o.append('O')
+            win_conditions.append(x_or_o)
+        # win_o = []
+        # for x in range(board_length):
+        #     win_o.append('O')
         for x in range(board_length):
             row.append(board[i][x])
             column.append(board[x][i])
@@ -19,13 +23,13 @@ def win_checker(board) -> bool:
             diagonal_backward.append(board[x][backward_count])
             backward_count -= 1
 
-        if row == win_x or row == win_o:
+        if row == win_conditions:
             return True
-        elif column == win_x or column == win_o:
+        elif column == win_conditions:
             return True
-        elif diagonal_forward == win_x or diagonal_forward == win_o:
+        elif diagonal_forward == win_conditions:
             return True
-        elif diagonal_backward == win_x or diagonal_forward == win_o:
+        elif diagonal_backward == win_conditions:
             return True
     
     return False
