@@ -1,26 +1,37 @@
 from print_board import print_board
+from computer_turn import available_moves
+
+class OccupiedSpaceError(Exception):
+    pass
 
 def human_turn(board) -> list[list[str]]:
-    print_board(board)
-    board_length = len(board)
-    player_choice = input(f'Where do you want to play? (1 - {board_length ** 2})\n \n')
+    player_choice = input(f'Please select a spot. (1 - {len(board) ** 2})\n \n')
+    available = available_moves(board)
+    updated_board = update_board(board, player_choice, available)
+    return updated_board
 
+def update_board(board, player_choice, available):
+    error = False
     while True:
         try:
+            if error:
+                player_choice = input(f'Please select a spot. (1 - {len(board) ** 2})\n \n')
             choice_index = int(player_choice) - 1
-            y_axis = int((choice_index)/ board_length)
-            x_axis = choice_index % board_length
-
-            if not (0 <= choice_index <= board_length ** 2 - 1):
-                raise IndexError()
-            if board[y_axis][x_axis] == 'X' or board[y_axis][x_axis] == 'O':
-                raise ValueError()
-            break
+            if not (int(player_choice) in available):
+                raise OccupiedSpaceError()
+            y_axis = int((choice_index)/ len(board))
+            x_axis = choice_index % len(board)
+            board[y_axis][x_axis] = 'X'
+            return board
         except ValueError:
             print_board(board)
-            player_choice = input(f'{player_choice} has already been chosen. Please select an unchosen spot. (1 - {board_length ** 2}) \n \n')
+            print(f'\n{player_choice} is not a valid input.')
+            error = True
         except IndexError:
-            player_choice = input(f'{player_choice} is not in range 1-9. Please select an unchosen spot. (1 - {board_length ** 2}) \n\n')
-
-    board[y_axis][x_axis] = 'X'
-    return board
+            print_board(board)
+            print(f'\n{player_choice} is not in range 1 - {len(board) ** 2}.')
+            error = True
+        except OccupiedSpaceError:
+            print_board(board)
+            print(f'\n{player_choice} has already been chosen.')
+            error = True
