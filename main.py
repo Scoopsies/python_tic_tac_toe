@@ -9,10 +9,10 @@ from custom_types import Board
 def new_game():
     while True:
         board: Board = create_board()
-        win: bool = False
-        turn: int = 0
+        win = 'no winner'
+        turn = 0
             
-        while win == False and turn < len(board) ** 2:
+        while win == 'no winner' and turn < len(board) ** 2:
             if turn % 2 == 0:
                 board = human_turn(board)
             else:

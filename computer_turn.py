@@ -7,14 +7,12 @@ from custom_types import Board
 def computer_turn(board: Board):
     available = available_moves(board)
     computer_choice = str(available[0])
+    miniMax(board, available)
     return update_board(board, computer_choice, available)
     
 
-def miniMax(board: Board):
-    move_choices = available_moves(board)
-    print(type(move_choices[0]))
-    turn = len(board) ** 2 - len(move_choices)
-    print(move_choices)
+def miniMax(board: Board, available_moves):
+    print(available_moves)
 
 
 

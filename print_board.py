@@ -20,10 +20,8 @@ def print_board(board: Board) -> None:
                 selection_format += '  {}  |'
             elif len(str(value)) == 2:
                 selection_format += ' {}  |'
-            elif len(str(value)) == 3:
-                selection_format += ' {} |'
             else:
-                selection_format += '{} |'
+                selection_format += ' {} |'
         selection_format = selection_format[:-1]
         selection = selection_format.format(*selection_values)
         print(down)

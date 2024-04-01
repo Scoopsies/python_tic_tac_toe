@@ -1,6 +1,6 @@
 from custom_types import Board
 
-def win_checker(board: Board, turn: int) -> bool:
+def win_checker(board: Board, turn: int) -> str:
     if not (turn % 2):
         x_or_o = 'X'
     else: 
@@ -25,12 +25,25 @@ def win_checker(board: Board, turn: int) -> bool:
             backward_count -= 1
 
         if row == win_conditions:
-            return True
+            if x_or_o == 'X':
+                return 'You Win!'
+            else:
+                return 'You Lose.'
         elif column == win_conditions:
-            return True
+            if x_or_o == 'X':
+                return 'You Win!'
+            else:
+                return 'You lose.'
         elif diagonal_forward == win_conditions:
-            return True
+            if x_or_o == 'X':
+                return 'You Win!'
+            else:
+                return 'You Lose.'
         elif diagonal_backward == win_conditions:
-            return True
-    
-    return False
+            if x_or_o == 'X':
+                return 'You Win!'
+            else:
+                return 'You Lose.'
+                
+    return 'no winner'
+
