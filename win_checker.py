@@ -1,8 +1,10 @@
-def win_checker(board, turn) -> bool:
-    if (turn % 2):
-        x_or_o = 'O'
-    else: 
+from custom_types import Board
+
+def win_checker(board: Board, turn: int) -> bool:
+    if not (turn % 2):
         x_or_o = 'X'
+    else: 
+        x_or_o = 'O'
 
     board_length = len(board)
     for i in range(board_length):

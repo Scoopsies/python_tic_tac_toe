@@ -1,9 +1,11 @@
-def create_board() -> list[list[str]]:
+from custom_types import Board
+
+def create_board() -> Board:
     board_size = input('How big of a board would you like? (3 - 15) \n\n')
     # Checks if input is valid integer 3 - 15 before creating the board.
     while True:
         try:
-            if  not (3 <= int(board_size) <= 15):
+            if  not (3 <= int(board_size) <= 20):
                 raise ValueError()
             board_size = int(board_size)
             break

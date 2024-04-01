@@ -4,10 +4,11 @@ from create_board import create_board
 from human_turn import human_turn
 from end_game_message import end_game_message
 from computer_turn import computer_turn
+from custom_types import Board
 
 def new_game():
     while True:
-        board: list[list[str]] = create_board()
+        board: Board = create_board()
         win: bool = False
         turn: int = 0
             
@@ -15,7 +16,7 @@ def new_game():
             if turn % 2 == 0:
                 board = human_turn(board)
             else:
-                computer_turn(board)
+                board = computer_turn(board)
 
             win = win_checker(board, turn)
             turn += 1

@@ -1,4 +1,6 @@
-def print_board(board) -> None:
+from custom_types import Board
+
+def print_board(board: Board) -> None:
     board_size = len(board)
     print('')
     for i in range(board_size):
@@ -18,8 +20,10 @@ def print_board(board) -> None:
                 selection_format += '  {}  |'
             elif len(str(value)) == 2:
                 selection_format += ' {}  |'
-            else:
+            elif len(str(value)) == 3:
                 selection_format += ' {} |'
+            else:
+                selection_format += '{} |'
         selection_format = selection_format[:-1]
         selection = selection_format.format(*selection_values)
         print(down)
