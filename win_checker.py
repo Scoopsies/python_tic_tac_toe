@@ -2,15 +2,15 @@ from custom_types import Board
 
 def win_checker(board: Board, turn: int) -> str:
     if not (turn % 2):
-        x_or_o = 'X'
+        player = 'X'
     else: 
-        x_or_o = 'O'
+        player = 'O'
 
     board_length = len(board)
     for i in range(board_length):
         win_conditions = []
         for x in range(board_length):
-            win_conditions.append(x_or_o)
+            win_conditions.append(player)
 
         row = []
         column = []
@@ -24,26 +24,11 @@ def win_checker(board: Board, turn: int) -> str:
             diagonal_backward.append(board[x][backward_count])
             backward_count -= 1
 
-        if row == win_conditions:
-            if x_or_o == 'X':
-                return 'You Win!'
-            else:
-                return 'You Lose.'
-        elif column == win_conditions:
-            if x_or_o == 'X':
-                return 'You Win!'
-            else:
-                return 'You lose.'
-        elif diagonal_forward == win_conditions:
-            if x_or_o == 'X':
-                return 'You Win!'
-            else:
-                return 'You Lose.'
-        elif diagonal_backward == win_conditions:
-            if x_or_o == 'X':
+        if row == win_conditions or column == win_conditions or diagonal_forward == win_conditions or diagonal_backward == win_conditions:
+            if player == 'X':
                 return 'You Win!'
             else:
                 return 'You Lose.'
                 
-    return 'no winner'
+    return 'No Winners.'
 
