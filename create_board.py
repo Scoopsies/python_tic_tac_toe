@@ -1,4 +1,4 @@
-from custom_types import Board
+from board_type import Board
 
 def create_board() -> Board:
     board_size = input('How big of a board would you like? (3 - 15) \n\n')

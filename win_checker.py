@@ -1,7 +1,7 @@
-from custom_types import Board
+from board_type import Board
 
-def win_checker(board: Board, turn: int) -> str:
-    if not (turn % 2):
+def win_checker(board: Board, available_spaces) -> str:
+    if not ((len(board) ** 2 - len(available_spaces)) % 2):
         player = 'X'
     else: 
         player = 'O'
@@ -29,6 +29,8 @@ def win_checker(board: Board, turn: int) -> str:
                 return 'You Win!'
             else:
                 return 'You Lose.'
+        elif not len(available_spaces):
+            return 'Draw'
                 
     return 'No Winners.'
 

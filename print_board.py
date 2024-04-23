@@ -1,4 +1,4 @@
-from custom_types import Board
+from board_type import Board
 
 def print_board(board: Board) -> None:
     board_size = len(board)

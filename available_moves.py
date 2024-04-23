@@ -1,4 +1,4 @@
-from custom_types import Board
+from board_type import Board
 
 def available_moves(board : Board):
     result = []
